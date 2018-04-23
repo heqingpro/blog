@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  error:
+    path: /app/error
+spring:
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/blog
+    username: root
+    password: 950419
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      maximum-pool-size: 100
+      connection-test-query: SELECT 1
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  profiles:
+    active: dev
+mybatis:
+  config-location: mybatis-config.xml
