@@ -28,5 +28,3 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
   profiles:
     active: dev
-mybatis:
-  config-location: mybatis-config.xml

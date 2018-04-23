@@ -46,12 +46,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!--引入mybatis作为系统ORM框架-->
+<!--        &lt;!&ndash;引入mybatis作为系统ORM框架&ndash;&gt;
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.1.1</version>
-        </dependency>
+        </dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -61,6 +61,17 @@
 			<artifactId>spring-boot-starter-velocity</artifactId>
             <version>1.4.1.RELEASE</version>
 		</dependency>
+        <!--java编写的高性能-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.24</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vladsch.flexmark</groupId>
+            <artifactId>flexmark-all</artifactId>
+            <version>0.26.4</version>
+        </dependency>
 	</dependencies>
 
 	<build>
