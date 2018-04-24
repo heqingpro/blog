@@ -14,13 +14,10 @@ import java.util.List;
 
 @Repository
 public interface LoginTicketDao extends CrudRepository<LoginTicket, Integer> {
-    List<LoginTicket> findByNameLike(String name);
-
-    Page<LoginTicket> findAll(Pageable pageable);
 
     @Transactional
     @Modifying
-    @Query("select name from LoginTicket ")
+    @Query("select userId,expired,status,ticket from LoginTicket ")
     List<String> queryAllNames();
 
     @Transactional
@@ -32,4 +29,7 @@ public interface LoginTicketDao extends CrudRepository<LoginTicket, Integer> {
     @Modifying
     @Query("update LoginTicket set status = :status where ticket = :ticket")
     void updateStatus(@Param("ticket") String ticket, @Param("status") int status);
+
+    @Query("select userId,expired,status,ticket from LoginTicket where ticket=:ticket")
+    LoginTicket seletByTicket(String ticket);
 }

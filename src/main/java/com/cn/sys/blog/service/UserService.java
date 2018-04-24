@@ -19,6 +19,10 @@ public class UserService {
     @Autowired
     private LoginTicketDao loginTicketDao;
 
+    public User getUser(int userId){
+        return userDao.findById(userId).get();
+    }
+
     public Map<String,String> register(String username, String password){
         Map<String,String> map = new HashMap<>();
         Random random = new Random();

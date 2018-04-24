@@ -28,3 +28,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
   profiles:
     active: dev
+
+  velocity:
+    suffix: .html
+    toolbox-config-location: toolbox.xml

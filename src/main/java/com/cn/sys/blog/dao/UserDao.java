@@ -14,13 +14,6 @@ import java.util.List;
 
 @Repository
 public interface UserDao extends CrudRepository<User, Integer> {
-    List<User> findByNameLike(String name);
-
-    Page<User> findAll(Pageable pageable);
-
-    @Query("select name from User")
-    List<String> queryAllNames();
-
     @Query("select name from  User")
     User findByName(String name);
 
