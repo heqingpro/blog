@@ -15,11 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.html.ObjectView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +45,7 @@ public class IndexController {
     public String index(Model model){
         List<ViewObject> vos = new ArrayList<>();
         List<Article> articles = articleService.getLatestArticles(0,4);
+
         for (Article article:articles){
             ViewObject vo = new ViewObject();
             List<Tag> tags = tagService.getTagByArticleId(article.getId());
@@ -58,6 +57,7 @@ public class IndexController {
             vo.set("tags",tags);
             vos.add(vo);
         }
+
         model.addAttribute("vos",vos);
 
         List<Tag> tags = tagService.getAllTag();

@@ -1,6 +1,7 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <footer>
     <div class="row">
-        <div class="col-md-1 col-md-offset-5 author"><span>@涂振宇的博客</span></div>
+        <div class="col-md-1 col-md-offset-5 author"><span>@hezy的博客</span></div>
         <ul class="col-md-3 row">
             <div class="col-md-1"><a href="http://weibo.com/2108395461"><i class="fa fa-weibo" aria-hidden="true"></i></a></div>
             <div class="col-md-1"><a href="#"><i class="fa fa-qq" aria-hidden="true"></i></a></div>
@@ -8,13 +9,13 @@
             <div class="col-md-1"><a href="https://github.com/zhenyutu"><i class="fa fa-github" aria-hidden="true"></i></a></div>
         </ul>
     </div>
-    <div class="power"><p><span>本站总阅读量$!{clickCount.sumPage}次</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>本文总阅读量$!{clickCount.currentPage}次</span></p></div>
+    <div class="power"><p><span th:text="'本站总阅读量'+${clickCount.get('sumPage')}+'次'"></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span th:text="'本文总阅读量'+${clickCount.get('currentPage')}+'次'"></span></p></div>
 </footer>
-<script src="../js/jquery-1.11.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap-tokenfield.min.js"></script>
-<script src="../js/editormd.min.js"></script>
-<script src="../js/jquery.tagcloud.js"></script>
-<script src="../js/style.js"></script>
+<script th:src="@{js/jquery-1.11.1.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{js/bootstrap-tokenfield.min.js}"></script>
+<script th:src="@{js/editormd.min.js}"></script>
+<script th:src="@{js/jquery.tagcloud.js}"></script>
+<script th:src="@{js/style.js}"></script>
 </body>
 </html>

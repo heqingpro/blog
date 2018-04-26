@@ -1,19 +1,17 @@
-#parse("header.html")
-<div class="articleContant">
+<div th:include="/header" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<div class="articleContant" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="wrapper row">
         <div class="col-md-2"></div>
         <div class="col-md-8 row articleShow">
             <h1>Archives</h1>
             <hr>
-            #foreach($vo in $vos)
-                <h2>$!{vo.date}</h2>
+            <div th:each="vo:${vos}">
+                <h2 th:text="${vo.date}"></h2>
                 <ul>
-                    #foreach($archive in $vo.list)
-                    <li><a href="/article/$!{archive.articleId}">$!{archive.articleTitle}</a></li>
-                    #end
+                    <li th:each="archive:${vo.list}"><a href="/article/${archive.articleId}" th:text="${archive.articleTitle}"></a></li>
                 </ul>
-            #end
+            </div>
         </div>
     </div>
 </div>
-#parse("footer.html")
+<div th:include="/footer" xmlns:th="http://www.w3.org/1999/xhtml"></div>

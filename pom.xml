@@ -85,6 +85,11 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>4.1.4.RELEASE</version>
 		</dependency>
+        <!--前端页面渲染 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>

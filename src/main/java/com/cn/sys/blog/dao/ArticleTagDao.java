@@ -28,5 +28,5 @@ public interface ArticleTagDao extends CrudRepository<ArticleTag, Integer> {
     List<Article> selectByTagId(int tagId,int offset,int limit);
 
     @Query(value = "select * from tag where id in(select tag_id from article_tag where article_id=:articleId)",nativeQuery = true)
-    List<Tag> selectByArticleId(int articleId);
+    List<Tag> selectByArticleId(@Param("articleId") int articleId);
 }
