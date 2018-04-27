@@ -30,6 +30,5 @@ public interface LoginTicketDao extends CrudRepository<LoginTicket, Integer> {
     @Query("update LoginTicket set status = :status where ticket = :ticket")
     void updateStatus(@Param("ticket") String ticket, @Param("status") int status);
 
-    @Query("select userId,expired,status,ticket from LoginTicket where ticket=:ticket")
-    LoginTicket seletByTicket(@Param("ticket") String ticket);
+    List<LoginTicket> findByTicket(@Param("ticket") String ticket);
 }
