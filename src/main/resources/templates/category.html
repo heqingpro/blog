@@ -1,5 +1,6 @@
-<div th:include="/header" xmlns:th="http://www.w3.org/1999/xhtml" ></div>
-  <div class="contant" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:include="/header"></div>
+  <div class="contant">
     <div class="wrapper row">
       <div class="col-md-1"></div>
       <div class="col-md-10 row">
@@ -34,13 +35,6 @@
                 <a href="">&laquo;</a>
               </li>
               <li><a href="" th:text="${pagination.get('current')}/${pagination.get('lastPage')}"></a></li>
-              <!--{% for p in pagination.iter_pages() %}-->
-                <!--{% if p %}-->
-                  <!--<li><a href="{{ url_for('index', page = p) }}">{{p}}</a></li>-->
-                <!--{% else %}-->
-                <!--<li><a href="{{ url_for('index', page = p) }}">...</a></li>-->
-                <!--{% endif %}-->
-              <!--{% endfor %}-->
               <li th:if="${pagination.get('current')} lt ${pagination.get('lastPage')}">
                 <a href="/category/${category}?pageId=${pagination.get('nextPage')}">&raquo;</a>
               </li>
@@ -58,9 +52,9 @@
               <li><a href="/category/Web?pageId=1">Web</a><span th:text="'('+${categoryCount.get('Web')}+')'"></span></li>
               <li><a href="/category/Linux?pageId=1">Linux</a><span th:text="'('+${categoryCount.get('Linux')}+')'"></span></li>
               <li><a href="/category/分布式系统?pageId=1">分布式系统</a><span th:text="'('+${categoryCount.get('Distributed')}+')'"></span></li>
-              <li><a href="/category/数据库?pageId=1">数据库</a><span th:text="'('+${categoryCount.Database}+')'"></span></li>
-              <li><a href="/category/算法?pageId=1">算法</a><span th:text="'('+${categoryCount.Algorithm}+')'"></span></li>
-              <li><a href="/category/其它?pageId=1">其它</a><span th:text="'('+${categoryCount.Other}+')'"></span></li>
+              <li><a href="/category/数据库?pageId=1">数据库</a><span th:text="'('+${categoryCount.get('Database')}+')'"></span></li>
+              <li><a href="/category/算法?pageId=1">算法</a><span th:text="'('+${categoryCount.get('Algorithm')}+')'"></span></li>
+              <li><a href="/category/其它?pageId=1">其它</a><span th:text="'('+${categoryCount.get('Other')}+')'"></span></li>
             </ul>
           </div>
           <div class="side tags">
@@ -80,4 +74,5 @@
       </div>
     </div>
   </div>
-<div th:include="/footer" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<div th:include="/footer" ></div>
+</html>

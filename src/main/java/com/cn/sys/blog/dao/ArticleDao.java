@@ -21,17 +21,17 @@ public interface ArticleDao extends CrudRepository<Article, Integer> {
     int getArticleCount();
 
     @Query("select count(id) from Article where category= :category")
-    int getArticleCountByCategory(String category);
+    int getArticleCountByCategory(@Param("category") String category);
 
     @Query(value = "select * from article ORDER BY id DESC limit :offset,:limit",nativeQuery=true)
     List<Article> selectLatestArticles(@Param("offset") int offset,@Param("limit") int limit);
 
     @Query(value = "SELECT * FROM article WHERE category=:category ORDER BY id DESC LIMIT  :offset,:limit",nativeQuery = true)
-    List<Article> selecttArticlesByCategory(String category,int offset, int limit);
+    List<Article> selecttArticlesByCategory(@Param("category") String category, @Param("offset") int offset,@Param("limit") int limit);
 
     @Transactional
     @Modifying
     @Query("update Article set commentCount=:commentCount where id=:id")
-    void updateCommentCount(int id,int commentCount);
+    void updateCommentCount(@Param("id") int id,@Param("commentCount") int commentCount);
 
 }

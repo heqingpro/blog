@@ -27,7 +27,7 @@
         <div class="title option"><label>Title</label><input type="text" class="form-control" id="title" name="title"></div>
         <div class="row categoryTag">
             <div class="col-md-6"><div><label>Category</label></div>
-                <select class="" class="form-control" id="category"  name="category">
+                <select class="form-control" id="category"  name="category">
                     <option value="Java">Java</option>
                     <option value="Web">Web</option>
                     <option value="Linux">Linux</option>
@@ -51,8 +51,8 @@
         </div>
     </form>
 </div>
-<script th:src="@{js/jquery-1.11.1.min.js}"></script>
-<script th:src="@{js/editormd.min.js}"></script>
+<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+<script th:src="@{~/js/editormd.min.js}"></script>
 <script type="text/javascript">
     var testEditor;
     $(function() {
@@ -60,7 +60,7 @@
             width   : "90%",
             height  : 640,
             syncScrolling : "single",
-            path    : "../lib/"
+            path    : "lib/"
         });
     });
 </script>

@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -66,11 +67,13 @@ public class IndexController {
         ViewObject pagination = new ViewObject();
         int count = articleService.getArticleCount();
         User user = hostHolder.getUser();
+        int create;
         if (user==null||"admin".equals(user.getRole())){
-            model.addAttribute("create",1);
+            create=2;
         }else {
-            model.addAttribute("create",0);
+            create=1;
         }
+        model.addAttribute("create",create);
         pagination.set("current",1);
         pagination.set("nextPage",2);
         pagination.set("lastPage",count/4+1);
@@ -166,9 +169,9 @@ public class IndexController {
     public String create(Model model){
         User user = hostHolder.getUser();
         if (user==null||"admin".equals(user.getRole())){
-            model.addAttribute("create",1);
+            model.addAttribute("create",2);
         }else {
-            model.addAttribute("create",0);
+            model.addAttribute("create",1);
         }
         return "create";
     }
