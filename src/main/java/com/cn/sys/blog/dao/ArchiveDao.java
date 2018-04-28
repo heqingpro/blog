@@ -22,5 +22,5 @@ public interface ArchiveDao extends CrudRepository<Archive, Integer> {
     //
     @Query(value = "SELECT article.id AS articleId,article.title AS articleTitle, YEAR(article.created_date) AS year,MONTH(article.created_date) AS month " +
             "FROM article GROUP BY YEAR(article.created_date), MONTH(article.created_date),article.id,article.title order by id desc",nativeQuery = true)
-    List<Archive> seletArticleGroupByTime();
+    List<Object[]> seletArticleGroupByTime();
 }

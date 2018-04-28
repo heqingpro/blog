@@ -6,9 +6,9 @@
             <h1>Archives</h1>
             <hr>
             <div th:each="vo:${vos}">
-                <h2 th:text="${vo.date}"></h2>
+                <h2 th:text="${vo.get('date')}"></h2>
                 <ul>
-                    <li th:each="archive:${vo.list}"><a href="/article/${archive.articleId}" th:text="${archive.articleTitle}"></a></li>
+                    <li th:each="archive:${vo.get('list')}"><a th:href="@{'/article/'+${archive.articleId}}" th:text="${archive.articleTitle}"></a></li>
                 </ul>
             </div>
         </div>

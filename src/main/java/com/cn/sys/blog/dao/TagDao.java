@@ -14,14 +14,12 @@ import java.util.List;
 
 @Repository
 public interface TagDao extends CrudRepository<Tag, Integer> {
-    @Query(value = "select id,name,count from tag",nativeQuery = true)
-    Tag findByName(String name);
-
+    List<Tag> findByName(@Param("name") String name);
     @Transactional
     @Modifying
     @Query("delete from Tag where id = :id")
     void delTag(@Param("id") Integer id);
 
     @Query(value = "update tag set count=:count where id=:tagId",nativeQuery = true)
-    void updateCount(int tagId,int count);
+    void updateCount(@Param("tagId") int tagId,@Param("count") int count);
 }

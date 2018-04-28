@@ -42,7 +42,7 @@ public class IndexController {
     @Autowired
     private JedisService jedisService;
 
-    @RequestMapping(path = {"/"})
+    @RequestMapping(path = {"/","/index"})
     public String index(Model model){
         List<ViewObject> vos = new ArrayList<>();
         List<Article> articles = articleService.getLatestArticles(0,4);

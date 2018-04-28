@@ -26,13 +26,22 @@ public class ArchiveController {
 
     @RequestMapping("/archive")
     public String archive(Model model){
-        List<Archive> archives = archiveDao.seletArticleGroupByTime();
+        List<Object[]> list=archiveDao.seletArticleGroupByTime();
+        List<Archive> archives=new ArrayList<>();
+        for (Object[] objects:list){
+            Archive archive=new Archive();
+            archive.setArticleId((int)objects[0]);
+            archive.setArticleTitle((String)objects[1]);
+            archive.setYear(Integer.valueOf(objects[2].toString()));//(int)objects[2]
+            archive.setMonth(Integer.valueOf(objects[3].toString()));//(int)objects[3]
+            archives.add(archive);
+        }
         Map<String,List<Archive>> map = new HashMap<>();
         for (Archive archive : archives){
             String date = archive.getYear()+"-"+archive.getMonth();
-            List<Archive> list = map.getOrDefault(date,new ArrayList<>());
-            list.add(archive);
-            map.put(date,list);
+            List<Archive> list1 = map.getOrDefault(date,new ArrayList<>());
+            list1.add(archive);
+            map.put(date,list1);
         }
         List<ViewObject> vos = new ArrayList<>();
         for (Map.Entry entry:map.entrySet()){

@@ -7,20 +7,20 @@
         <div class="col-md-9 leftSection">
           <ul class="articles">
             <tr th:each="vo:${vos}">
-              <li class="blogAticle">
+              <li class="blogAticle" th:with="article=${vo.get('article')}">
                 <div class="articleHeader">
-                  <p><a th:text="${vo.article.title}" href="/article/${vo.article.id}" ></a></p>
+                  <p><a th:text="${article.title}" th:href="@{'/article/'+${article.id}}" ></a></p>
                 </div>
-                <div class="articleContent"><p th:text="${vo.article.describes}"></p>
+                <div class="articleContent"><p th:text="${article.describes}"></p>
                 </div>
                 <div class="articleFooter">
                   <ul>
-                    <li><i class="fa fa-calendar" aria-hidden="true"></i><span th:text="${date.format('yyyy-MM-dd','${vo.article.createdDate}')}"></span></li>
-                    <li><i class="fa fa-eye" aria-hidden="true"></i><span th:text="${vo.clickCount}"></span></li>
-                    <li><i class="fa fa-list" aria-hidden="true"></i><span th:text="${vo.article.category}"></span></li>
-                    <li><i class="fa fa-tags" aria-hidden="true"></i><span th:each="tag:${vo.tags}" th:text="${tag.name}"></span>
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i><span th:text="${#dates.format(article.createdDate,'yyyy-MM-dd')}"></span></li>
+                    <li><i class="fa fa-eye" aria-hidden="true"></i><span th:text="${clickCount}"></span></li>
+                    <li><i class="fa fa-list" aria-hidden="true"></i><span th:text="${article.category}"></span></li>
+                    <li><i class="fa fa-tags" aria-hidden="true"></i><span th:each="tag:${tags}" th:text="${tag.name}"></span>
                     </li>
-                    <li class="readMore"><a href="/article/${vo.article.id}">read more</a></li>
+                    <li class="readMore"><a th:href="@{'/article/'+${article.id}}">read more</a></li>
                   </ul>
                 </div>
               </li>
@@ -29,14 +29,14 @@
           <div class="paginationWapper">
             <ul class="pagination">
               <li th:if="${pagination.get('current')} gt 1">
-                <a href="/page/${pagination.prePage}">&laquo;</a>
+                <a th:href="@'/page/'+${pagination.prePage}}">&laquo;</a>
               </li>
               <li class="disabled" th:unless="${pagination.get('current')} gt 1">
                 <a href="">&laquo;</a>
               </li>
               <li><a href="" th:text="${pagination.get('current')}/${pagination.get('current')}"></a></li>
               <li th:if="${pagination.get('current')} lt ${pagination.get('lastPage')}">
-                <a href="/page/${pagination.nextPage}">&raquo;</a>
+                <a th:href="@{'/page/'+${pagination.nextPage}}">&raquo;</a>
               </li>
               <li class="disabled" th:unless="${pagination.get('current')} lt ${pagination.get('lastPage')}">
                 <a href="">&raquo;</a>
@@ -61,7 +61,7 @@
             <div class="header"><i class="fa fa-tags" aria-hidden="true"></i><span>Tags</span></div>
             <div id="tagCloud">
               <div th:each="tag:${tags}">
-              <a href="/tag/${tag.id}?pageId=1" rel="${tag.count}" th:text="${tag.name}"></a>
+              <a th:href="@{'/tag/'+${tag.id}+'?pageId=1'}" rel="${tag.count}" th:text="${tag.name}"></a>
               </div>
             </div>
           </div>
@@ -72,11 +72,11 @@
                 <div th:with="str=${hotArticle.title}">
                 <div th:if="${str.length()} gt 19"  >
                   <div th:with="str=${str.substring(0,19)}">
-                  <li><a href="/article/${hotArticle.id}" th:text="${str}"></a></li>
+                  <li><a th:href="@{'/article/'+${hotArticle.id}}" th:text="${str}"></a></li>
                   </div>
                 </div>
                 <div th:unless="${str.length()} gt 19"    >
-                  <li><a href="/article/${hotArticle.id}" th:text="${str}"></a></li>
+                  <li><a th:href="@{'/article/'+${hotArticle.id}}" th:text="${str}"></a></li>
                 </div>
                 </div>
               </div>

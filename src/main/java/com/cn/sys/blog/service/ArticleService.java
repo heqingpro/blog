@@ -7,6 +7,8 @@ import com.cn.sys.blog.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -40,18 +42,37 @@ public class ArticleService {
     }
 
     public List<Article> getLatestArticles(int offset, int limit){
-        return articleDao.selectLatestArticles(offset,limit);
+        List<Object[]> list=articleDao.selectLatestArticles(offset,limit);
+        return getActicles(list);
     }
 
     public List<Article> getArticlesByCategory(String category,int offset, int limit){
-        return articleDao.selecttArticlesByCategory(category,offset,limit);
+        List<Object[]> list=articleDao.selecttArticlesByCategory(category,offset,limit);
+        return getActicles(list);
     }
 
     public List<Article> getArticlesByTag(int tagId,int offset, int limit){
-        return articleTagDao.selectByTagId(tagId,offset,limit);
+        List<Object[]> list=articleTagDao.selectByTagId(tagId,offset,limit);
+        return getActicles(list);
     }
 
     public void updateCommentCount(int id,int count){
         articleDao.updateCommentCount(id,count);
+    }
+
+    public List<Article> getActicles(List<Object[]> list){
+        List<Article> articles=new ArrayList<>();
+        for(Object[] objects:list){
+            Article article=new Article();
+            article.setId((int)objects[0]);
+            article.setTitle((String)objects[1]);
+            article.setDescribes((String)objects[2]);
+            article.setContent((String)objects[3]);
+            article.setCreatedDate((Date)objects[4]);
+            article.setCommentCount((int)objects[5]);
+            article.setCategory((String)objects[6]);
+            articles.add(article);
+        }
+        return articles;
     }
 }

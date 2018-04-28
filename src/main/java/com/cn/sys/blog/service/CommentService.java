@@ -25,7 +25,7 @@ public class CommentService {
     }
 
     public List<Comment> getCommentsByArticleId(int articleId){
-        return commentDao.selectCommentsByArticleId(articleId);
+        return commentDao.findByArticleId(articleId);
     }
 
     public int getCommentsCount(int articleId){

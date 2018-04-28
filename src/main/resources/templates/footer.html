@@ -3,10 +3,10 @@
     <div class="row">
         <div class="col-md-1 col-md-offset-5 author"><span>@hezy的博客</span></div>
         <ul class="col-md-3 row">
-            <div class="col-md-1"><a href="http://weibo.com/2108395461"><i class="fa fa-weibo" aria-hidden="true"></i></a></div>
+            <div class="col-md-1"><a href="http://weibo.com/"><i class="fa fa-weibo" aria-hidden="true"></i></a></div>
             <div class="col-md-1"><a href="#"><i class="fa fa-qq" aria-hidden="true"></i></a></div>
             <div class="col-md-1"><a href="#"><i class="fa fa-weixin" aria-hidden="true"></i></a></div>
-            <div class="col-md-1"><a href="https://github.com/zhenyutu"><i class="fa fa-github" aria-hidden="true"></i></a></div>
+            <div class="col-md-1"><a href="https://github.com/"><i class="fa fa-github" aria-hidden="true"></i></a></div>
         </ul>
     </div>
     <div class="power"><p><span th:text="'本站总阅读量'+${clickCount.get('sumPage')}+'次'"></span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span th:text="'本文总阅读量'+${clickCount.get('currentPage')}+'次'"></span></p></div>
@@ -17,5 +17,25 @@
 <script th:src="@{~/js/editormd.min.js}"></script>
 <script th:src="@{~/js/jquery.tagcloud.js}"></script>
 <script th:src="@{~/js/style.js}"></script>
+<script th:src="@{~/lib/flowchart.min.js}"></script>
+<script th:src="@{~/lib/jquery.flowchart.min.js}"></script>
+<script th:src="@{~/lib/marked.min.js}"></script>
+<script th:src="@{~/lib/prettify.min.js}"></script>
+<script th:src="@{~/lib/raphael.min.js}"></script>
+<script th:src="@{~/lib/sequence-diagram.min.js}"></script>
+<script th:src="@{~/lib/underscore.min.js}"></script>
+<script type="text/javascript">
+    var testEditor;
+    $(function () {
+        testEditor = editormd.markdownToHTML("doc-content", {//注意：这里是上面DIV的id
+            htmlDecode: "style,script,iframe",
+            emoji: true,
+            taskList: true,
+            tex: true, // 默认不解析
+            flowChart: true, // 默认不解析
+            sequenceDiagram: true, // 默认不解析
+            codeFold: true,
+        });});
+</script>
 </body>
 </html>

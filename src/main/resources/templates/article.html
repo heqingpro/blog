@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   <title>Blog</title>
-  <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
-  <link th:href="@{css/font-awesome.min.css}" rel="stylesheet"/>
-  <link th:href="@{css/bootstrap-tokenfield.css}" rel="stylesheet">
-  <link th:href="@{css/style.css}" rel="stylesheet">
-  <link th:href="@{css/editormd.min.css}" rel="stylesheet">
+  <link th:href="@{~/css/bootstrap.min.css}" rel="stylesheet">
+  <link th:href="@{~/css/font-awesome.min.css}" rel="stylesheet"/>
+  <link th:href="@{~/css/bootstrap-tokenfield.css}" rel="stylesheet">
+  <link th:href="@{~/css/style.css}" rel="stylesheet">
+  <link th:href="@{~/css/editormd.min.css}" rel="stylesheet">
 </head>
 <body>
 <header class="row">
-  <div class="col-md-2 col-md-offset-2 row logo"><a href="/index">tuzhenyu</a></div>
+  <div class="col-md-2 col-md-offset-2 row logo"><a href="/index">hezy</a></div>
   <div class="col-md-5 col-md-offset-3 navigation">
     <ul class="row">
-      <li class="col-md-2"><a id="home" href="/index"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+      <li class="col-md-2"><a id="home" href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
       <li class="col-md-2"><a id="project" href="/archive"><i class="fa fa-server" aria-hidden="true"></i>Archive</a></li>
       <li class="col-md-2"><a id="life" href="/about"><i class="fa fa-heart" aria-hidden="true"></i>About</a></li>
       <li class="col-md-2"><a id="about" href="/links"><i class="fa fa-th-large" aria-hidden="true"></i>Links</a></li>
-      <li class="col-md-2" th:if="${create} gt 0"><a id="create" href="/create"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
+      <li class="col-md-2" th:if="${create} == 2"><a id="create" href="/create"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
     </ul>
   </div>
 </header>
@@ -29,27 +29,27 @@
         <h1 th:text="${article.title}"></h1>
         <div class="articleFooter articleHead">
           <ul>
-            <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><span th:text="${date.format('yyyy-MM-dd', ${article.get('createdDate')})}"></span></li>
+            <li><i class="fa fa-calendar fa-1x" aria-hidden="true"></i><span th:text="${#dates.format(article.createdDate,'yyyy-MM-dd')}"></span></li>
             <li><i class="fa fa-eye" aria-hidden="true"></i><span th:text="${articleClickCount}"></span></li>
-            <li><i class="fa fa-list fa-1x" aria-hidden="true"></i><span th:text="${article.get('category')}"></span></li>
+            <li><i class="fa fa-list fa-1x" aria-hidden="true"></i><span th:text="${article.category}"></span></li>
             <li><i class="fa fa-tags fa-1x" aria-hidden="true"></i>
               <span th:each="tag:${tags}" th:text="${tag.name}"></span>
             </li>
           </ul>
         </div>
         <hr>
-        <article class="article" th:text="${article.content}"></article>
+        <article class="article" th:utext="${article.content}"></article>
         <hr>
         <div class="likeWrapper row">
           <div class="col-md-3 col-md-offset-5 likeDisLike">
             <div class="like">
-              <div th:if="${like} gt 0"><a style="color:#337ab7;"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></a></div>
-              <div th:unless="${like} gt 0"><a href="/like/$!{article.id}"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></a></div>
+              <div th:if="${like} != 0"><a style="color:#337ab7;"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></a></div>
+              <div th:unless="${like} != 0"><a href="/like/$!{article.id}"><i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true"></i></a></div>
               <div class="likeCount" th:text="'赞'+'('+${likeCount}+')'"></div>
             </div>
             <div class="dislike">
-              <div th:if="${like} lt 0"><a style="color:#337ab7;"><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></a></div>
-              <div th:unless="${like} lt 0"><a href="/dislike/$!{article.id}"><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></a></div>
+              <div th:if="${like} != 0"><a style="color:#337ab7;"><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></a></div>
+              <div th:unless="${like} != 0"><a th:href="@{'/dislike/'+${article.id}}"><i class="fa fa-thumbs-o-down fa-3x" aria-hidden="true"></i></a></div>
               <div class="disLikeCount" th:text="'踩'+'('+${dislikeCount}+')'"></div>
             </div>
           </div>
@@ -63,13 +63,13 @@
               <div class="comment">
                 <div class="commentTop row">
                   <div class="commentLeft col-md-1">
-                    <div class="photo"><a href=""><img src="${vo.user.headUrl}" alt=""></a></div>
+                    <div class="photo"><a href=""><img th:src="@{${vo.user.headUrl}}" alt=""></a></div>
                     <div class="comment-author" th:text="${vo.user.name}"></div>
                   </div>
-                  <div class="commentContent col-md-9"><span th:text="${vo.comment.content}"></span></div>
+                  <div class="commentContent col-md-9" id="doc-content"><span th:utext="${vo.comment.content}"></span></div>
                 </div>
                 <div class="commentFooter">
-                  <div class="commentDate"><span th:text="'发布于'+${date.format('yyyy-MM-dd HH:mm:ss', ${vo.comment.createdDate})}"></span></div>
+                  <div class="commentDate"><span th:text="'发布于'+${dates.format('yyyy-MM-dd HH:mm:ss', vo.comment.createdDate)}"></span></div>
                   <div class="answer"><a href="">回复</a></div>
                 </div>
               </div>
@@ -81,7 +81,7 @@
         <hr>
         <div class="commentWapper row">
           <div class="editComment col-md-11">
-            <form action="/addComment/${article.id}"  method = "get">
+            <form th:action="@{'/addComment/'+${article.id}}"  method = "get">
               <textarea name="content" id="content" style="font-style: italic;width:100%;height: 115px"></textarea>
               <button  type="submit" class="btn btn-default">提交评论</button>
             </form>

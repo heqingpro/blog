@@ -24,10 +24,10 @@ public interface ArticleDao extends CrudRepository<Article, Integer> {
     int getArticleCountByCategory(@Param("category") String category);
 
     @Query(value = "select * from article ORDER BY id DESC limit :offset,:limit",nativeQuery=true)
-    List<Article> selectLatestArticles(@Param("offset") int offset,@Param("limit") int limit);
+    List<Object[]> selectLatestArticles(@Param("offset") int offset,@Param("limit") int limit);
 
     @Query(value = "SELECT * FROM article WHERE category=:category ORDER BY id DESC LIMIT  :offset,:limit",nativeQuery = true)
-    List<Article> selecttArticlesByCategory(@Param("category") String category, @Param("offset") int offset,@Param("limit") int limit);
+    List<Object[]> selecttArticlesByCategory(@Param("category") String category, @Param("offset") int offset,@Param("limit") int limit);
 
     @Transactional
     @Modifying

@@ -19,9 +19,8 @@ public interface CommentDao extends CrudRepository<Comment, Integer> {
     @Query("delete from Comment where id = :id")
     void delComment(@Param("id") Integer id);
 
-    @Query("select id,userId,articleId,content,createdDate,status from Comment where articleId=:articleId")
-    List<Comment> selectCommentsByArticleId(int articleId);
+    List<Comment> findByArticleId(@Param("articleId") int articleId);
 
     @Query("select count(id) from Comment where articleId=:articleId")
-    int getCommentCountByArticleId(int articleId);
+    int getCommentCountByArticleId(@Param("articleId") int articleId);
 }

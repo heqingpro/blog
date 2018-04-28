@@ -8,6 +8,7 @@ import com.cn.sys.blog.entity.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,7 +21,7 @@ public class TagService {
     private ArticleTagDao articleTagDao;
 
     public Tag selectByName(String name){
-        return tagDao.findByName(name);
+        return tagDao.findByName(name).get(0);
     }
 
     public List<Tag> getAllTag(){
@@ -28,7 +29,16 @@ public class TagService {
     }
 
     public List<Tag> getTagByArticleId(int articleId){
-        return articleTagDao.selectByArticleId(articleId);
+        List<Object[]> list=articleTagDao.selectByArticleId(articleId);
+        List<Tag> tags=new ArrayList<>();
+        for(Object[] object:list){
+            Tag tag=new Tag();
+            tag.setId((int)object[0]);
+            tag.setName((String)object[1]);
+            tag.setCount((int)object[2]);
+            tags.add(tag);
+        }
+        return tags;
     }
 
     public int addTag(Tag tag){

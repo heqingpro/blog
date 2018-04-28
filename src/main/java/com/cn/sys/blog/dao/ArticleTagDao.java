@@ -23,13 +23,11 @@ public interface ArticleTagDao extends CrudRepository<ArticleTag, Integer>,JpaSp
     void delArticleTag(@Param("id") Integer id);
 
     @Query("select count(id) from Article where id in (select articleId from ArticleTag where tagId=:tagId)")
-    @Modifying
-    int selectArticleCountByTagId(int tagId);
+    int selectArticleCountByTagId(@Param("tagId") int tagId);
 
     @Query(value = "SELECT * FROM article WHERE id IN (SELECT article_id from article_tag where tag_id=:tagId) LIMIT :offset,:limit",nativeQuery = true)
-    @Modifying
-    List<Article> selectByTagId(int tagId,int offset,int limit);
+    List<Object[]> selectByTagId(@Param("tagId") int tagId,@Param("offset") int offset,@Param("limit") int limit);
 
     @Query(value = "select * from tag where id in(select tag_id from article_tag where article_id=:articleId)",nativeQuery = true)
-    List<Tag> selectByArticleId(@Param("articleId") int articleId);
+    List<Object[]> selectByArticleId(@Param("articleId") int articleId);
 }
