@@ -2,7 +2,6 @@ package com.cn.sys.blog.util;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;

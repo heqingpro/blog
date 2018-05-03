@@ -1,0 +1,59 @@
+Manifest-Version: 1.0
+Class-Path: icu4j-58.1.jar flexmark-util-0.26.4.jar flexmark-youtrack-
+ converter-0.26.4.jar flexmark-profile-pegdown-0.26.4.jar spring-conte
+ xt-5.0.4.RELEASE.jar jackson-annotations-2.9.0.jar flexmark-ext-yaml-
+ front-matter-0.26.4.jar commons-beanutils-1.9.2.jar spring-webmvc-5.0
+ .4.RELEASE.jar flexmark-ext-gfm-tables-0.26.4.jar spring-web-5.0.4.RE
+ LEASE.jar spring-data-commons-2.0.5.RELEASE.jar hibernate-commons-ann
+ otations-5.0.1.Final.jar velocity-1.7.jar spring-context-support-4.1.
+ 4.RELEASE.jar flexmark-ext-toc-0.26.4.jar hibernate-validator-6.0.7.F
+ inal.jar commons-pool2-2.5.0.jar spring-beans-5.0.4.RELEASE.jar flexm
+ ark-ext-jekyll-front-matter-0.26.4.jar spring-aop-5.0.4.RELEASE.jar v
+ alidation-api-2.0.1.Final.jar flexmark-ext-tables-0.26.4.jar mail-1.4
+ .7.jar flexmark-ext-ins-0.26.4.jar flexmark-all-0.26.4.jar logback-co
+ re-1.2.3.jar spring-boot-autoconfigure-2.0.0.RELEASE.jar spring-jcl-5
+ .0.4.RELEASE.jar oro-2.0.8.jar thymeleaf-extras-java8time-3.0.1.RELEA
+ SE.jar flexmark-ext-definition-0.26.4.jar flexmark-html-parser-0.26.4
+ .jar hibernate-jpa-2.1-api-1.0.0.Final.jar flexmark-ext-autolink-0.26
+ .4.jar log4j-api-2.10.0.jar spring-boot-2.0.0.RELEASE.jar mysql-conne
+ ctor-java-5.1.45.jar struts-tiles-1.3.8.jar jackson-datatype-jsr310-2
+ .9.4.jar flexmark-ext-emoji-0.26.4.jar flexmark-ext-jekyll-tag-0.26.4
+ .jar spring-jdbc-5.0.4.RELEASE.jar jedis-2.9.0.jar flexmark-ext-footn
+ otes-0.26.4.jar spring-core-5.0.4.RELEASE.jar javax.transaction-api-1
+ .2.jar commons-lang-2.4.jar jackson-module-parameter-names-2.9.4.jar 
+ fastjson-1.2.24.jar thymeleaf-spring5-3.0.9.RELEASE.jar tomcat-embed-
+ websocket-8.5.28.jar flexmark-pdf-converter-0.26.4.jar spring-data-jp
+ a-2.0.5.RELEASE.jar flexmark-ext-wikilink-0.26.4.jar openhtmltopdf-co
+ re-0.0.1-RC9.jar flexmark-ext-escaped-character-0.26.4.jar jsoup-1.10
+ .2.jar spring-aspects-5.0.4.RELEASE.jar flexmark-jira-converter-0.26.
+ 4.jar spring-boot-starter-velocity-1.4.0.RELEASE.jar spring-boot-star
+ ter-thymeleaf-2.0.0.RELEASE.jar velocity-tools-2.0.jar log4j-to-slf4j
+ -2.10.0.jar jandex-2.0.3.Final.jar spring-boot-starter-2.0.0.RELEASE.
+ jar openhtmltopdf-pdfbox-0.0.1-RC9.jar flexmark-ext-typographic-0.26.
+ 4.jar flexmark-formatter-0.26.4.jar flexmark-ext-anchorlink-0.26.4.ja
+ r openhtmltopdf-rtl-support-0.0.1-RC9.jar spring-boot-starter-json-2.
+ 0.0.RELEASE.jar classmate-1.3.4.jar commons-chain-1.1.jar jackson-cor
+ e-2.9.4.jar pdfbox-2.0.4.jar jboss-logging-3.3.2.Final.jar commons-di
+ gester-2.1.jar snakeyaml-1.19.jar commons-logging-1.2.jar javassist-3
+ .22.0-GA.jar flexmark-ext-gfm-strikethrough-0.26.4.jar flexmark-ext-s
+ uperscript-0.26.4.jar attoparser-2.0.4.RELEASE.jar autolink-0.6.0.jar
+  flexmark-ext-gfm-tasklist-0.26.4.jar antlr-2.7.7.jar flexmark-ext-xw
+ iki-macros-0.26.4.jar spring-boot-starter-jdbc-2.0.0.RELEASE.jar flex
+ mark-ext-gfm-issues-0.26.4.jar thymeleaf-3.0.9.RELEASE.jar spring-boo
+ t-devtools-2.0.0.RELEASE.jar spring-boot-starter-logging-2.0.0.RELEAS
+ E.jar fontbox-2.0.4.jar struts-core-1.3.8.jar aspectjweaver-1.8.13.ja
+ r hibernate-core-5.2.14.Final.jar spring-boot-starter-tomcat-2.0.0.RE
+ LEASE.jar commons-collections-3.2.2.jar spring-tx-5.0.4.RELEASE.jar f
+ lexmark-0.26.4.jar flexmark-ext-gfm-users-0.26.4.jar spring-boot-star
+ ter-data-jpa-2.0.0.RELEASE.jar HikariCP-2.7.8.jar slf4j-api-1.7.25.ja
+ r sslext-1.2-0.jar javax.annotation-api-1.3.2.jar activation-1.1.jar 
+ spring-expression-5.0.4.RELEASE.jar flexmark-ext-aside-0.26.4.jar tom
+ cat-embed-el-8.5.28.jar jackson-databind-2.9.4.jar spring-boot-starte
+ r-web-2.0.0.RELEASE.jar struts-taglib-1.3.8.jar flexmark-ext-abbrevia
+ tion-0.26.4.jar spring-orm-5.0.4.RELEASE.jar dom4j-1.6.1.jar commons-
+ validator-1.3.1.jar jul-to-slf4j-1.7.25.jar spring-boot-starter-aop-2
+ .0.0.RELEASE.jar openhtmltopdf-jsoup-dom-converter-0.0.1-RC9.jar tomc
+ at-embed-core-8.5.28.jar unbescape-1.1.5.RELEASE.jar logback-classic-
+ 1.2.3.jar jackson-datatype-jdk8-2.9.4.jar
+Main-Class: com.cn.sys.blog.BlogApplication
+

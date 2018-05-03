@@ -7,18 +7,22 @@ import com.cn.sys.blog.service.JedisService;
 import com.cn.sys.blog.service.TagService;
 import com.cn.sys.blog.service.UserService;
 import com.cn.sys.blog.util.JblogUtil;
+import com.cn.sys.blog.util.RSAUtil;
 import com.cn.sys.blog.util.RedisKeyUntil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -114,8 +118,18 @@ public class IndexController {
     }
 
     @RequestMapping("/in")
-    public String in(Model model,@RequestParam(value = "next",required = false)String next){
+    public String in(Model model, @RequestParam(value = "next",required = false)String next, HttpServletRequest request, HttpServletResponse response){
         model.addAttribute("next",next);
+        try {
+            //生成RSA公钥；
+            String publicKeyStr = RSAUtil.generateBase64PublicKey();
+            model.addAttribute("publicKeyStr",publicKeyStr);
+/*            HttpSession session=request.getSession();
+            session.setAttribute("privateKeyStr",privateKeyStr);*/
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return "login";
     }
 
@@ -123,7 +137,8 @@ public class IndexController {
     public String register(Model model, HttpServletResponse httpResponse,
                            @RequestParam String username, @RequestParam String password
             ,@RequestParam(value = "next",required = false)String next){
-        Map<String,String> map = userService.register(username,password);
+        String password1=RSAUtil.decryptBase64(password);
+        Map<String,String> map = userService.register(username,password1);
         if (map.containsKey("ticket")){
             Cookie cookie = new Cookie("ticket",map.get("ticket"));
             cookie.setPath("/");
@@ -142,7 +157,8 @@ public class IndexController {
     @RequestMapping("/login")
     public String login(Model model, HttpServletResponse httpResponse,
                         @RequestParam String username,@RequestParam String password,@RequestParam(value = "next",required = false)String next){
-        Map<String,String> map = userService.login(username,password);
+        String password1=RSAUtil.decryptBase64(password);
+        Map<String,String> map = userService.login(username,password1);
         if (map.containsKey("ticket")) {
             Cookie cookie = new Cookie("ticket",map.get("ticket"));
             cookie.setPath("/");
